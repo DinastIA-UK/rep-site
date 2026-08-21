@@ -10,7 +10,8 @@ server/         Express: serve a LP + POST /api/lead → backup JSONL em /data +
   lead.js         campos, validação, ordem das colunas (COLUMNS) — puro, testado em lead.test.js
   sheets.js       service account → aba "Leads" (cria aba e cabeçalho se não existirem)
   server.js       rota, rate-limit (8/10min por IP), honeypot (campo `website`), estáticos
-  tools/create-sheet.js  cria a planilha com a SA e compartilha com um e-mail
+  tools/create-sheet.js  cria a planilha com a SA e compartilha com um e-mail (falha se a org bloquear Drive p/ SA)
+  tools/format-sheet.js  reaplica cabeçalho/formatação e remove abas padrão vazias (Sheet1)
 deploy/
   setup-sheets.sh  gcloud: habilita APIs, cria SA + chave, cria planilha, grava env, redeploya
   set-env.sh       só grava SHEET_ID + SA (base64) no EasyPanel e redeploya
@@ -51,6 +52,9 @@ DATA_DIR=/tmp/repdata PORT=3000 node server.js   # http://localhost:3000
 ```
 
 ## Colunas da planilha
+
+Cabeçalho usa os rótulos de `HEADER_LABELS` e os selects gravam o texto da opção (`VALUE_LABELS`,
+espelho dos `<option>` do index.html — se mudar as opções na LP, atualizar lá). Chaves internas:
 
 `data_hora, nome, email, whatsapp, cidade, experiencia, tech, modelo, disponibilidade, carteira_ativa,
 carteira_qtd, carteira_fat, carteira_seg, carteira_reg, motivacao, linkedin, curriculo, carteira_ok,
