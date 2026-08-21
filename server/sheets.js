@@ -51,6 +51,16 @@ export async function formatHeader(sheets, spreadsheetId, sheetId) {
       fields: 'userEnteredFormat(backgroundColor,textFormat,verticalAlignment,wrapStrategy)',
     } },
     { updateDimensionProperties: { range: { sheetId, dimension: 'ROWS', startIndex: 0, endIndex: 1 }, properties: { pixelSize: 34 }, fields: 'pixelSize' } },
+    { repeatCell: {
+      range: { sheetId, startRowIndex: 1, startColumnIndex: 0, endColumnIndex: 1 },
+      cell: { userEnteredFormat: { numberFormat: { type: 'DATE_TIME', pattern: 'dd/mm/yyyy hh:mm' } } },
+      fields: 'userEnteredFormat.numberFormat',
+    } },
+    { repeatCell: {
+      range: { sheetId, startRowIndex: 1, startColumnIndex: 0, endColumnIndex: n },
+      cell: { userEnteredFormat: { wrapStrategy: 'CLIP', verticalAlignment: 'TOP' } },
+      fields: 'userEnteredFormat(wrapStrategy,verticalAlignment)',
+    } },
     { setBasicFilter: { filter: { range: { sheetId, startRowIndex: 0, startColumnIndex: 0, endColumnIndex: n } } } },
     ...COLUMNS.map((c, i) => ({ updateDimensionProperties: {
       range: { sheetId, dimension: 'COLUMNS', startIndex: i, endIndex: i + 1 },

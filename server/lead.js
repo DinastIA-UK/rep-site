@@ -43,6 +43,50 @@ export const HEADER_LABELS = {
 };
 export const HEADER_ROW = COLUMNS.map((c) => HEADER_LABELS[c] ?? c);
 
+// Texto das opcoes dos selects (espelho do index.html) — a planilha recebe o texto, nao o codigo.
+export const VALUE_LABELS = {
+  experiencia: {
+    "menos1": "Menos de 1 ano",
+    "1a3": "1 a 3 anos",
+    "3a5": "3 a 5 anos",
+    "mais5": "Mais de 5 anos"
+  },
+  tech: {
+    "sim_freq": "Sim, com frequência",
+    "sim_pont": "Sim, pontualmente",
+    "nao_int": "Não, mas tenho interesse",
+    "nao": "Não"
+  },
+  modelo: {
+    "presencial": "Presencial",
+    "hibrido": "Híbrido",
+    "remoto": "Remoto",
+    "desempregado": "Não estou trabalhando"
+  },
+  disponibilidade: {
+    "menos10": "Menos de 10h/semana",
+    "10a20": "10 a 20h/semana",
+    "20a30": "20 a 30h/semana",
+    "integral": "30h+ por semana"
+  },
+  carteira_ativa: {
+    "sim": "Sim",
+    "nao": "Não"
+  },
+  carteira_qtd: {
+    "1a5": "1 a 5",
+    "6a15": "6 a 15",
+    "16a30": "16 a 30",
+    "mais30": "Mais de 30"
+  },
+  carteira_fat: {
+    "ate1mi": "Até R$1 mi/ano",
+    "1a5mi": "R$1–5 mi/ano",
+    "5a20mi": "R$5–20 mi/ano",
+    "mais20mi": "+R$20 mi/ano"
+  }
+};
+
 // Largura das colunas em px (default 150).
 export const COLUMN_WIDTHS = { data_hora: 160, nome: 220, email: 240, whatsapp: 140, cidade: 160, motivacao: 420, linkedin: 220, curriculo: 220, page_url: 260, user_agent: 200 };
 
@@ -71,7 +115,7 @@ export function validateLead(body = {}) {
 export function normalizeLead(body = {}, meta = {}) {
   const now = meta.now ?? new Date();
   const lead = {
-    data_hora: now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', hour12: false }),
+    data_hora: now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', hour12: false }).replace(',', ''),
   };
   for (const k of [...REQUIRED, ...REQUIRED_CARTEIRA, ...OPTIONAL, ...TRACKING]) lead[k] = clean(body[k], k);
   if (lead.carteira_ativa !== 'sim') for (const k of REQUIRED_CARTEIRA) lead[k] = '';
@@ -82,5 +126,8 @@ export function normalizeLead(body = {}, meta = {}) {
 }
 
 export function leadToRow(lead) {
-  return COLUMNS.map((c) => lead[c] ?? '');
+  return COLUMNS.map((c) => {
+    const v = lead[c] ?? '';
+    return VALUE_LABELS[c]?.[v] ?? v;
+  });
 }
