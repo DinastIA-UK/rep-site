@@ -31,6 +31,21 @@ export const COLUMNS = [
   'ip',
 ];
 
+// Rotulos legiveis do cabecalho (linha 1 da planilha). Chave = COLUMNS.
+export const HEADER_LABELS = {
+  data_hora: 'Data/Hora', nome: 'Nome', email: 'E-mail', whatsapp: 'WhatsApp', cidade: 'Cidade/UF',
+  experiencia: 'Experiência em vendas', tech: 'Vende tecnologia?', modelo: 'Modelo preferido',
+  disponibilidade: 'Disponibilidade', carteira_ativa: 'Carteira ativa?', carteira_qtd: 'Empresas na carteira',
+  carteira_fat: 'Faturamento médio', carteira_seg: 'Segmento principal', carteira_reg: 'Região de atuação',
+  motivacao: 'O que chamou atenção', linkedin: 'LinkedIn', curriculo: 'Currículo', carteira_ok: 'Aceitou compromisso',
+  utm_source: 'UTM Source', utm_medium: 'UTM Medium', utm_campaign: 'UTM Campaign', utm_content: 'UTM Content',
+  utm_term: 'UTM Term', referrer: 'Referrer', page_url: 'URL da página', user_agent: 'User-Agent', ip: 'IP',
+};
+export const HEADER_ROW = COLUMNS.map((c) => HEADER_LABELS[c] ?? c);
+
+// Largura das colunas em px (default 150).
+export const COLUMN_WIDTHS = { data_hora: 160, nome: 220, email: 240, whatsapp: 140, cidade: 160, motivacao: 420, linkedin: 220, curriculo: 220, page_url: 260, user_agent: 200 };
+
 const MAX_LEN = { motivacao: 4000 };
 const DEFAULT_MAX = 500;
 
