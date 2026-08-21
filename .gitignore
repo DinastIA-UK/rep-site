@@ -1,0 +1,4 @@
+server/node_modules
+server/*.jsonl
+deploy/sa-*.json
+.DS_Store
