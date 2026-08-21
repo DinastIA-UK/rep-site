@@ -453,7 +453,23 @@ textarea{resize:vertical;min-height:92px}
 #cDet .fg{grid-template-columns:1fr 1fr}
 .cb-wrap{grid-column:1/-1;margin-top:8px;background:rgba(45,214,160,.06);border:1px solid rgba(45,214,160,.2);border-radius:14px;padding:18px 20px}
 .cb-label{display:flex;align-items:flex-start;gap:13px;cursor:pointer}
-.cb-label input[type=checkbox]{width:19px;height:19px;border-radius:5px;flex-shrink:0;margin-top:2px;padding:0;cursor:pointer;accent-color:var(--gold)}
+.cb-label input[type=checkbox]{
+  -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:6px;flex-shrink:0;margin-top:1px;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(45,214,160,.45);position:relative;
+  transition:background .18s,border-color .18s,box-shadow .18s;
+}
+.cb-label input[type=checkbox]:hover{border-color:rgba(45,214,160,.8);background:rgba(45,214,160,.1)}
+.cb-label input[type=checkbox]:focus-visible{box-shadow:0 0 0 3px rgba(45,214,160,.25)}
+.cb-label input[type=checkbox]:checked{background:linear-gradient(135deg,#2dd6a0,#66ecc4);border-color:transparent}
+.cb-label input[type=checkbox]::after{
+  content:'';position:absolute;left:7px;top:3px;width:5px;height:10px;
+  border:solid #043326;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);opacity:0;
+  transition:transform .15s var(--ease),opacity .15s;
+}
+.cb-label input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1);opacity:1}
+.cb-label:has(input:checked) .cb-text{color:rgba(255,255,255,.8)}
+.fsub .btn:disabled{opacity:.38;cursor:not-allowed;box-shadow:none;transform:none;filter:saturate(.6)}
+.fsub .btn:disabled:hover{transform:none;box-shadow:none}
 .cb-text{font-size:13.5px;color:rgba(255,255,255,.6);line-height:1.6}
 .cb-text strong{color:#fff;font-weight:600}
 .fsub{margin-top:30px}
@@ -930,7 +946,7 @@ textarea{resize:vertical;min-height:92px}
           </div>
           <div class="fsub">
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-            <button type="submit" class="btn btn-gold">Enviar aplicação ›</button>
+            <button type="submit" class="btn btn-gold" disabled aria-disabled="true">Enviar aplicação ›</button>
             <p class="fnote">Vagas limitadas por segmento e região. Seus dados não são repassados a terceiros.</p>
             <p class="fnote ferr" id="formErr" style="display:none;color:#f87171">Não conseguimos enviar agora. Tente de novo em instantes.</p>
           </div>
@@ -1165,6 +1181,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const err = document.getElementById('formErr');
   let sending = false;
 
+  // Botão só habilita quando todos os obrigatórios (inclusive os de carteira, quando visíveis) e o "Confirmo" estão ok.
+  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  const isValid = () => [...form.querySelectorAll('[required]')].every(f => {
+    if (f.type === 'checkbox') return f.checked;
+    if (f.type === 'email') return emailOk(f.value);
+    return f.value.trim() !== '';
+  });
+  const refresh = () => { const ok = isValid() && !sending; btn.disabled = !ok; btn.setAttribute('aria-disabled', String(!ok)); };
+  form.addEventListener('input', refresh);
+  form.addEventListener('change', refresh);
+  refresh();
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (sending) return;
@@ -1193,7 +1221,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     } catch (_) {
       err.style.display = 'block';
     } finally {
-      sending = false; btn.textContent = label; btn.disabled = false;
+      sending = false; btn.textContent = label; refresh();
     }
   });
 })();
