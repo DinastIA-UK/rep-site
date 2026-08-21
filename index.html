@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Representante DinastIA — Você fecha uma vez. Recebe o ano inteiro.</title>
+<meta name="description" content="Programa de Representantes DinastIA: comissão de 90% no fechamento + 15% do setup + 10% recorrente por 12 meses. 100% remoto. A equipe vende com você. Vagas limitadas por segmento." />
+
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://rep.dinastia.uk/" />
+<meta property="og:title"       content="Representante DinastIA — Programa de Parceiros" />
+<meta property="og:description" content="Você fecha uma vez. Recebe o ano inteiro. Comissão 90-15-10, 100% remoto, a equipe vende com você. Vagas limitadas por segmento e região." />
+<meta property="og:image"       content="https://rep.dinastia.uk/img/og-cover.jpg" />
+<meta property="og:image:width"  content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card"       content="summary_large_image" />
+<meta name="twitter:image"      content="https://rep.dinastia.uk/img/og-cover.jpg" />
+
+<link rel="icon" href="brand/img/mono-light.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════ RESET & TOKENS ══════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#fafafb; --bg-alt:#f5f5f3;
+  --ink:#111318; --muted:#6b7078;
+  --line:rgba(0,0,0,.08);
+  --dark:#070b12; --dark-2:#0b1119;
+  --dark-line:rgba(255,255,255,.09);
+  --gold:#2dd6a0; --gold-2:#66ecc4; --gold-deep:#0ea87c;
+  --gold-bg:rgba(45,214,160,.09); --gold-bd:rgba(45,214,160,.25);
+  --radius:20px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg); color:var(--ink);
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+.w{max-width:1180px;margin:0 auto;padding:0 28px}
+
+h1,h2,h3{font-family:'Inter Tight',sans-serif;font-weight:500}
+h1{font-size:clamp(46px,6.6vw,96px);line-height:1.02;letter-spacing:-2.6px}
+h2{font-size:clamp(34px,4.2vw,62px);line-height:1.04;letter-spacing:-1.6px}
+h3{font-size:clamp(19px,2vw,25px);line-height:1.25;letter-spacing:-.4px}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);flex-shrink:0}
+.eyebrow.on-dark{color:rgba(255,255,255,.45)}
+.eyebrow.gold{color:var(--gold)}
+.lead{font-size:17.5px;line-height:1.7;color:var(--muted)}
+.lead-dark{font-size:17.5px;line-height:1.7;color:rgba(255,255,255,.52)}
+.gold-txt{
+  color:var(--gold);
+  background:linear-gradient(115deg,#1fc290 0%,#8ff5d8 45%,#2dd6a0 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ══════════════ BOTÕES ══════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:999px;padding:15px 30px;
+  font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;
+  cursor:pointer;border:none;text-decoration:none;white-space:nowrap;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .2s,color .2s,border-color .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-sm{padding:11px 22px;font-size:13px}
+.btn-lg{padding:18px 38px;font-size:15.5px}
+.btn-gold{
+  background:linear-gradient(135deg,#2dd6a0,#66ecc4);
+  color:#043326;box-shadow:0 6px 28px rgba(45,214,160,.4);
+}
+.btn-gold:hover{box-shadow:0 12px 44px rgba(45,214,160,.55)}
+.btn-ghost{background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-line{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+
+/* ══════════════ REVEAL / PARALLAX ══════════════ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+[data-plx]{will-change:transform}
+
+/* ══════════════ NAV ══════════════ */
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:900;
+  width:min(1150px,calc(100% - 28px));
+  display:flex;align-items:center;gap:16px;
+  background:rgba(7,11,18,.72);
+  backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;padding:10px 12px 10px 22px;
+  box-shadow:0 10px 44px rgba(0,0,0,.45);
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.nav.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-10px)}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.nav-brand img{height:30px;width:auto}
+.nav-brand-txt{font-family:'Inter Tight',sans-serif;font-size:16px;font-weight:600;color:#fff;letter-spacing:-.3px;line-height:1.1}
+.nav-brand-txt small{display:block;font-size:8.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold)}
+.nav-links{flex:1;display:flex;justify-content:center;gap:28px}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:1.1px;text-transform:uppercase;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s;position:relative}
+.nav-links a:hover{color:rgba(255,255,255,.85)}
+.nav-links a.active{color:#fff}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--gold);border-radius:1px}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;cursor:pointer;padding:10px;flex-shrink:0}
+.nav-hamburger span{display:block;width:100%;height:1.5px;background:rgba(255,255,255,.8);border-radius:2px;transition:transform .25s var(--ease),opacity .2s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;background:rgba(7,11,18,.97);z-index:850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu-links{display:flex;flex-direction:column;align-items:center;gap:26px}
+.mobile-menu-links a{font-family:'Inter Tight',sans-serif;font-size:clamp(24px,6vw,34px);font-weight:500;color:rgba(255,255,255,.62);text-decoration:none;letter-spacing:-.5px;transition:color .2s}
+.mobile-menu-links a:hover{color:#fff}
+.mobile-menu-close{position:absolute;top:30px;right:30px;font-size:28px;color:rgba(255,255,255,.4);cursor:pointer;background:none;border:none;transition:color .2s}
+.mobile-menu-close:hover{color:#fff}
+
+/* ══════════════ HERO CINEMATOGRÁFICO ══════════════ */
+.hero-stage{height:280vh;position:relative}
+.hero{
+  position:sticky;top:0;height:100vh;overflow:hidden;
+  background:var(--dark);display:flex;align-items:center;justify-content:center;
+}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.hero-media .hero-poster{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+}
+.hero-media video{opacity:0;transition:opacity .8s}
+.hero-media video.ready{opacity:1}
+.hero-shade{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 62% 54% at 50% 44%, rgba(7,11,18,.66) 0%, transparent 72%),
+    radial-gradient(ellipse 120% 90% at 50% 108%, rgba(7,11,18,.92) 0%, transparent 55%),
+    linear-gradient(to bottom, rgba(7,11,18,.72) 0%, rgba(7,11,18,.3) 30%, rgba(7,11,18,.34) 68%, rgba(7,11,18,.9) 100%);
+}
+.hero-fade{position:absolute;inset:0;background:var(--dark);opacity:0;pointer-events:none;z-index:2}
+.hero-center{position:relative;z-index:3;text-align:center;max-width:1020px;padding:0 28px;will-change:transform,opacity}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(7,11,18,.5);border:1px solid rgba(45,214,160,.35);
+  backdrop-filter:blur(10px);
+  border-radius:999px;padding:8px 20px;
+  color:var(--gold-2);font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+  margin-bottom:30px;
+}
+.hero-pill i{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2.4s ease-in-out infinite;font-style:normal}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{color:#fff;text-shadow:0 4px 44px rgba(0,0,0,.55)}
+.hero-sub{
+  font-size:clamp(15.5px,1.6vw,18.5px);color:rgba(255,255,255,.66);
+  line-height:1.65;max-width:620px;margin:26px auto 38px;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+.hero-sub strong{color:#fff;font-weight:600}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-proof{
+  position:absolute;bottom:34px;left:0;right:0;z-index:3;
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:0 24px;
+  will-change:opacity;
+}
+.hproof{
+  display:flex;align-items:baseline;gap:9px;
+  background:rgba(7,11,18,.55);border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(14px);border-radius:14px;padding:12px 20px;
+}
+.hproof b{font-family:'Inter Tight',sans-serif;font-size:21px;font-weight:500;color:var(--gold-2);letter-spacing:-.5px}
+.hproof span{font-size:12px;color:rgba(255,255,255,.55)}
+.hero-scroll-hint{
+  position:absolute;bottom:34px;right:44px;z-index:3;
+  font-size:10px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);writing-mode:vertical-rl;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-scroll-hint::after{content:'';width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(.3);transform-origin:top}55%{transform:scaleY(1)}100%{transform:scaleY(.3);transform-origin:top;opacity:.2}}
+
+/* ══════════════ MARQUEE ══════════════ */
+.marquee{background:var(--dark-2);border-top:1px solid var(--dark-line);border-bottom:1px solid var(--dark-line);padding:17px 0;overflow:hidden;position:relative;z-index:5}
+.marquee-track{display:flex;animation:mq 44s linear infinite;white-space:nowrap;width:max-content}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mi{display:inline-flex;align-items:center;gap:24px;padding:0 32px;font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.3);flex-shrink:0}
+.mi i{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.6;font-style:normal}
+
+/* ══════════════ PILAR HEADER GENÉRICO ══════════════ */
+.sec{padding:130px 0}
+.sec-hd{max-width:760px;margin-bottom:64px}
+.sec-hd.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-hd.center .eyebrow{justify-content:center}
+.sec-hd .lead,.sec-hd .lead-dark{margin-top:18px;max-width:640px}
+.sec-hd.center .lead,.sec-hd.center .lead-dark{margin-left:auto;margin-right:auto}
+
+/* ══════════════ PILAR 01 · GANHO ══════════════ */
+.sec-ganho{background:var(--bg)}
+.comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px}
+.comm-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:0 34px 34px;position:relative;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .25s;
+}
+.comm-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(17,19,24,.09);border-color:var(--gold-bd)}
+.comm-obj{height:210px;margin:0 -34px 28px;overflow:hidden;position:relative}
+.comm-obj img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1s var(--ease)}
+.comm-card:hover .comm-obj img{transform:scale(1.05)}
+.comm-obj::after{content:'';position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(to bottom,transparent,#fff)}
+.comm-tag{font-size:10px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.comm-pct{
+  font-family:'Inter Tight',sans-serif;font-weight:500;
+  font-size:clamp(64px,7vw,96px);letter-spacing:-4px;line-height:.95;
+  color:var(--gold-deep);
+  background:linear-gradient(135deg,#0ea87c,#2dd6a0 55%,#66ecc4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:14px;
+}
+.comm-what{font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:8px}
+.comm-note{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* simulador */
+.sim{
+  background:var(--dark);border-radius:calc(var(--radius) + 8px);
+  padding:56px;position:relative;overflow:hidden;
+}
+.sim::before{
+  content:'';position:absolute;inset:0;
+  background:url('img/sectors-grid-jade.webp') center/cover no-repeat;opacity:.14;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 75% 90% at 78% 30%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(ellipse 75% 90% at 78% 30%,#000 0%,transparent 72%);
+}
+.sim > *{position:relative;z-index:1}
+.sim-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.sim-top h3{color:#fff;font-size:clamp(22px,2.4vw,30px)}
+.sim-top p{font-size:13px;color:rgba(255,255,255,.4);margin-top:6px}
+.sim-total{text-align:right}
+.sim-total b{
+  display:block;font-family:'Inter Tight',sans-serif;font-weight:500;
+  font-size:clamp(40px,4.6vw,60px);letter-spacing:-2.4px;line-height:1;
+  color:var(--gold-2);font-variant-numeric:tabular-nums;
+}
+.sim-total span{font-size:12px;color:rgba(255,255,255,.42)}
+.sim-rows{display:flex;flex-direction:column;gap:11px}
+.sim-row{display:flex;align-items:center;gap:16px}
+.sim-mo{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.38);min-width:48px;letter-spacing:.6px}
+.sim-track{flex:1;height:36px;background:rgba(255,255,255,.05);border-radius:8px;overflow:hidden;display:flex}
+.sim-a,.sim-b{height:100%;width:0;transition:width 1.3s var(--ease)}
+.sim-a{background:linear-gradient(90deg,#1fc290,#66ecc4)}
+.sim-b{background:rgba(45,214,160,.24)}
+.sim-row.in .sim-a{width:var(--a)}
+.sim-row.in .sim-b{width:var(--b)}
+.sim-v{min-width:112px;text-align:right;font-family:'Inter Tight',sans-serif;font-size:16px;font-weight:500;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums}
+.sim-v.peak{color:var(--gold-2);font-size:18px}
+.sim-leg{display:flex;gap:26px;margin-top:22px;flex-wrap:wrap}
+.sim-leg span{display:flex;align-items:center;gap:9px;font-size:12.5px;color:rgba(255,255,255,.4)}
+.sim-leg i{width:12px;height:12px;border-radius:3px;font-style:normal;flex-shrink:0}
+.sim-note{
+  margin-top:26px;padding:18px 24px;border-radius:14px;
+  background:rgba(45,214,160,.07);border:1px solid rgba(45,214,160,.18);
+  font-size:14.5px;color:rgba(255,255,255,.6);line-height:1.65;
+}
+.sim-note strong{color:var(--gold-2);font-weight:600}
+
+/* ══════════════ PILAR 02 · MERCADO (cinemático) ══════════════ */
+.sec-mercado{
+  position:relative;overflow:hidden;background:var(--dark);
+  padding:150px 0;
+}
+.mercado-bg{position:absolute;inset:-12% 0;z-index:0}
+.mercado-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+.mercado-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(7,11,18,.94) 0%, rgba(7,11,18,.78) 42%, rgba(7,11,18,.28) 100%),
+             linear-gradient(to bottom, rgba(7,11,18,.6), transparent 30%, transparent 70%, rgba(7,11,18,.75));
+}
+.mercado-in{position:relative;z-index:1;max-width:620px}
+.mercado-in h2{color:#fff}
+.mercado-stats{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:44px 0 30px;
+}
+.mstat{
+  background:rgba(7,11,18,.6);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(16px);border-radius:var(--radius);padding:26px 26px 24px;
+  transition:border-color .25s,transform .25s var(--ease);
+}
+.mstat:hover{border-color:var(--gold-bd);transform:translateY(-4px)}
+.mstat b{
+  display:block;font-family:'Inter Tight',sans-serif;font-size:clamp(38px,4vw,54px);
+  font-weight:500;color:var(--gold-2);letter-spacing:-2px;line-height:1;
+  font-variant-numeric:tabular-nums;margin-bottom:10px;
+}
+.mstat div{font-size:14px;color:rgba(255,255,255,.78);font-weight:500;line-height:1.5}
+.mstat small{display:block;font-size:11px;color:rgba(255,255,255,.36);margin-top:8px;font-weight:400}
+.mstat.destaque{background:rgba(45,214,160,.1);border-color:rgba(45,214,160,.3)}
+.mercado-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+.mtag{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(8px);border-radius:999px;padding:8px 17px;
+  font-size:13px;font-weight:500;color:rgba(255,255,255,.68);
+}
+
+/* ══════════════ PRODUTOS ══════════════ */
+.sec-produtos{background:var(--bg-alt)}
+.prod-grid{display:grid;grid-template-columns:1fr;gap:22px}
+.prod-card{
+  position:relative;border-radius:calc(var(--radius) + 8px);overflow:hidden;
+  min-height:420px;display:flex;align-items:stretch;
+  box-shadow:0 30px 80px rgba(17,19,24,.12);
+}
+.prod-bg{position:absolute;inset:0}
+.prod-bg img{width:100%;height:112%;object-fit:cover;object-position:center right}
+.prod-card:hover .prod-bg img{transform:scale(1.03)}
+.prod-bg img{transition:transform 1.2s var(--ease)}
+.prod-glass{
+  position:relative;z-index:2;align-self:stretch;
+  width:min(480px,100%);margin:26px;
+  background:rgba(250,250,251,.82);
+  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:var(--radius);padding:40px 38px;
+  display:flex;flex-direction:column;justify-content:center;gap:16px;
+}
+.prod-glass img.plogo{height:34px;width:auto;object-fit:contain;object-position:left;margin-bottom:2px}
+.prod-dir{font-size:10px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold-deep)}
+.prod-glass h3{font-size:clamp(22px,2.4vw,28px);color:var(--ink)}
+.prod-glass p{font-size:14.5px;color:var(--muted);line-height:1.65}
+.prod-glass .btn{align-self:flex-start;margin-top:6px}
+
+/* ══════════════ PILAR 03 · DINASTIA ══════════════ */
+.sec-dinastia{background:var(--bg)}
+.din-grid{display:grid;grid-template-columns:5fr 4fr;gap:22px;align-items:stretch}
+.g-card{
+  position:relative;border-radius:calc(var(--radius) + 8px);overflow:hidden;
+  min-height:600px;background:var(--dark);
+  box-shadow:0 36px 90px rgba(17,19,24,.16);
+}
+.g-card > img{width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,11,18,.94) 0%,rgba(7,11,18,.45) 38%,rgba(7,11,18,.06) 62%,transparent 100%)}
+.g-body{position:absolute;bottom:0;left:0;right:0;padding:40px 44px;z-index:2}
+.g-name{font-family:'Inter Tight',sans-serif;font-size:30px;font-weight:500;color:#fff;letter-spacing:-.6px}
+.g-role{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold);margin:5px 0 18px}
+.g-tags{display:flex;flex-wrap:wrap;gap:8px}
+.g-tag{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(6px);border-radius:999px;padding:6px 14px;font-size:12.5px;color:rgba(255,255,255,.68)}
+.apoio-card{
+  background:var(--dark-2);border:1px solid var(--dark-line);border-radius:calc(var(--radius) + 8px);
+  padding:46px 42px;display:flex;flex-direction:column;position:relative;overflow:hidden;
+}
+.hd-flex{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:64px}
+.hd-flex .sec-hd{margin-bottom:0}
+.hd-obj{width:min(330px,30vw);flex-shrink:0;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 56px rgba(17,19,24,.1)}
+.hd-obj img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.apoio-card h3{font-size:clamp(24px,2.6vw,32px);color:#fff;margin:10px 0 12px;position:relative}
+.apoio-card > p{position:relative}
+.apoio-list{list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:34px;position:relative}
+.apoio-item{display:flex;align-items:flex-start;gap:15px}
+.apoio-chk{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:var(--gold-bg);border:1px solid var(--gold-bd);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--gold);
+}
+.apoio-item strong{display:block;font-size:15px;color:#fff;font-weight:600;margin-bottom:3px}
+.apoio-item span{font-size:13.5px;color:rgba(255,255,255,.45);line-height:1.55}
+
+/* ══════════════ PROVA ══════════════ */
+.sec-prova{background:var(--dark);position:relative;overflow:hidden}
+.sec-prova::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:640px;height:1px;background:linear-gradient(90deg,transparent,rgba(45,214,160,.35),transparent)}
+.sec-prova .sec-hd h2{color:#fff}
+.prova-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prova-card{
+  background:rgba(255,255,255,.03);border:1px solid var(--dark-line);border-radius:var(--radius);
+  padding:32px 30px;transition:border-color .25s,transform .25s var(--ease),background .25s;
+}
+.prova-card:hover{border-color:var(--gold-bd);transform:translateY(-4px);background:rgba(45,214,160,.05)}
+.prova-num{
+  font-family:'Inter Tight',sans-serif;font-weight:500;
+  font-size:clamp(36px,4vw,52px);letter-spacing:-2px;line-height:1;
+  color:var(--gold-2);margin-bottom:10px;font-variant-numeric:tabular-nums;
+}
+.prova-label{font-size:14px;color:rgba(255,255,255,.72);font-weight:500;line-height:1.5;margin-bottom:10px}
+.prova-sector{font-size:10.5px;color:rgba(255,255,255,.32);font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.prova-src{margin-top:26px;font-size:12px;color:rgba(255,255,255,.3);text-align:center}
+
+/* ══════════════ SELEÇÃO ══════════════ */
+.sec-sel{background:var(--bg-alt)}
+.sel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sel-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 26px;
+  position:relative;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s;
+}
+.sel-card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(17,19,24,.08);border-color:var(--gold-bd)}
+.sel-n{
+  font-family:'Inter Tight',sans-serif;font-size:15px;font-weight:600;
+  color:var(--gold-deep);letter-spacing:.5px;margin-bottom:18px;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.sel-n::after{content:'';width:34px;height:1px;background:var(--gold-bd)}
+.sel-card h3{font-size:17px;margin-bottom:8px}
+.sel-card p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.sel-cta{margin-top:52px;text-align:center}
+.sel-cta p{font-size:14px;color:var(--muted);margin-top:16px}
+
+/* ══════════════ FORM ══════════════ */
+.sec-form{background:var(--dark);position:relative;overflow:hidden}
+.sec-form::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:640px;height:1px;background:linear-gradient(90deg,transparent,rgba(45,214,160,.35),transparent)}
+.sec-form::after{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:url('img/sectors-grid-jade.webp') center/cover no-repeat;opacity:.12;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 80% 65% at 50% 32%,#000 0%,transparent 75%);
+  mask-image:radial-gradient(ellipse 80% 65% at 50% 32%,#000 0%,transparent 75%);
+}
+.sec-form .w{position:relative;z-index:1}
+.sec-form .sec-hd h2{color:#fff}
+.form-wrap{max-width:660px;margin:0 auto}
+.form-card{
+  background:rgba(11,17,25,.88);border:1px solid var(--dark-line);border-radius:calc(var(--radius) + 8px);
+  backdrop-filter:blur(12px);
+  padding:54px 50px;box-shadow:0 60px 130px rgba(0,0,0,.55);
+}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.fi{display:flex;flex-direction:column;gap:7px}
+.fi.full{grid-column:1/-1}
+.fl{font-size:10.5px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.fl .req{color:var(--gold)}
+.fl .opt{color:rgba(255,255,255,.22);font-weight:400;text-transform:none;letter-spacing:0}
+input,select,textarea{
+  background:rgba(255,255,255,.045);border:1px solid var(--dark-line);border-radius:11px;
+  padding:13px 15px;font-size:14px;font-family:'Inter',sans-serif;color:#fff;
+  width:100%;outline:none;-webkit-appearance:none;appearance:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.2)}
+input:focus,select:focus,textarea:focus{border-color:rgba(45,214,160,.45);background:rgba(255,255,255,.06);box-shadow:0 0 0 3px rgba(45,214,160,.08)}
+select option{background:#141c2b;color:#fff}
+textarea{resize:vertical;min-height:92px}
+.fdiv{border:none;border-top:1px solid var(--dark-line);margin:6px 0;grid-column:1/-1}
+.fsec{grid-column:1/-1;font-size:9.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.24);padding-top:4px}
+#cDet{grid-column:1/-1}
+#cDet .fg{grid-template-columns:1fr 1fr}
+.cb-wrap{grid-column:1/-1;margin-top:8px;background:rgba(45,214,160,.06);border:1px solid rgba(45,214,160,.2);border-radius:14px;padding:18px 20px}
+.cb-label{display:flex;align-items:flex-start;gap:13px;cursor:pointer}
+.cb-label input[type=checkbox]{width:19px;height:19px;border-radius:5px;flex-shrink:0;margin-top:2px;padding:0;cursor:pointer;accent-color:var(--gold)}
+.cb-text{font-size:13.5px;color:rgba(255,255,255,.6);line-height:1.6}
+.cb-text strong{color:#fff;font-weight:600}
+.fsub{margin-top:30px}
+.fsub .btn{width:100%;justify-content:center;padding:18px;font-size:15.5px}
+.fnote{margin-top:14px;font-size:11.5px;color:rgba(255,255,255,.24);text-align:center;line-height:1.6}
+.form-ok{display:none;text-align:center;padding:70px 24px}
+.form-ok.show{display:block}
+.ok-ico{width:68px;height:68px;border-radius:50%;background:var(--gold-bg);border:1.5px solid var(--gold-bd);display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-size:26px;color:var(--gold)}
+.form-ok h3{font-size:27px;color:#fff;margin-bottom:12px}
+.form-ok p{color:rgba(255,255,255,.45);font-size:14.5px;line-height:1.75}
+
+/* ══════════════ FOOTER ══════════════ */
+.footer{background:var(--dark);border-top:1px solid var(--dark-line);padding:40px 0}
+.footer-in{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer-brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.footer-brand img{height:26px;width:auto}
+.footer-brand span{font-family:'Inter Tight',sans-serif;font-size:15px;font-weight:600;color:#fff;letter-spacing:-.2px}
+.footer-links{display:flex;gap:26px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.22)}
+
+/* ══════════════ FLOAT CTA ══════════════ */
+.float{position:fixed;bottom:26px;right:26px;z-index:800;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.float.show{opacity:1;pointer-events:all;transform:none}
+.float-inner{background:linear-gradient(135deg,#2dd6a0,#66ecc4);color:#043326;border-radius:999px;padding:14px 26px;font-size:13.5px;font-weight:700;box-shadow:0 10px 36px rgba(45,214,160,.5);transition:transform .2s var(--ease),box-shadow .2s;letter-spacing:.1px}
+.float:hover .float-inner{transform:translateY(-3px);box-shadow:0 16px 48px rgba(45,214,160,.6)}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media (max-width:1024px){
+  .prova-grid{grid-template-columns:1fr 1fr}
+  .sel-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .hero-stage{height:auto}
+  .hero{
+    position:relative;height:auto;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:118px 0 30px;
+  }
+  .hero-center{padding:0 22px}
+  .hero-proof{position:static;margin-top:38px;order:2}
+  .hero-fade{display:none}
+  .comm-grid{grid-template-columns:1fr}
+  .din-grid{grid-template-columns:1fr}
+  .g-card{min-height:440px}
+  .fg{grid-template-columns:1fr}
+  #cDet .fg{grid-template-columns:1fr}
+  .form-card{padding:36px 26px}
+  .sim{padding:36px 24px}
+  .hero-scroll-hint{display:none}
+  .mercado-in{max-width:100%}
+  .prod-glass{margin:14px;width:auto}
+  .hd-flex{flex-direction:column;align-items:flex-start;gap:26px}
+  .hd-obj{width:min(300px,70vw)}
+  .mercado-stats{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  h1{letter-spacing:-1.2px}
+  .sec{padding:88px 0}
+  .sec-mercado{padding:100px 0}
+  .sel-grid{grid-template-columns:1fr}
+  .prova-grid{grid-template-columns:1fr 1fr}
+  .hproof{padding:9px 14px}
+  .hproof b{font-size:17px}
+  .g-body{padding:28px 26px}
+  .apoio-card{padding:34px 26px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+  .float{bottom:16px;right:14px}
+  .sim-v{min-width:92px;font-size:14px}
+}
+@media (max-width:560px){
+  /* nav enxuto: hamburger + marca; CTA fica no menu e no float */
+  .nav > .btn-gold{display:none}
+  .nav{padding:10px 12px 10px 18px}
+  .nav-brand img{height:26px}
+  .nav-brand-txt{font-size:14.5px}
+  .hero-pill{font-size:9.5px;letter-spacing:1.1px;padding:7px 14px}
+  .hero-sub br{display:none}
+  .hero-ctas .btn-lg{padding:15px 26px;font-size:14px}
+  .hproof{flex:1 1 100%;justify-content:center}
+  .comm-obj{height:170px}
+  .sim-mo{min-width:40px;font-size:10.5px}
+  .prod-glass{padding:28px 22px}
+  .mstat b{font-size:40px}
+}
+@media (max-width:480px){
+  .prova-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .marquee-track,.hero-pill i,.hero-scroll-hint::after{animation:none}
+  .sim-a,.sim-b{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="float" id="floatCta"><div class="float-inner">Quero ser representante ›</div></div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobileClose" aria-label="Fechar menu">✕</button>
+  <nav class="mobile-menu-links">
+    <a href="#ganho">O plano</a>
+    <a href="#mercado">O mercado</a>
+    <a href="#produtos">Os produtos</a>
+    <a href="#dinastia">A Dinastia</a>
+    <a href="#aplicar">Aplicar</a>
+  </nav>
+  <a href="#aplicar" class="btn btn-gold btn-lg">Quero ser representante ›</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-brand">
+    <img src="brand/img/mono-light.png" alt="DinastIA" />
+    <span class="nav-brand-txt">DinastIA<small>Representantes</small></span>
+  </a>
+  <div class="nav-links">
+    <a href="#ganho">O plano</a>
+    <a href="#mercado">O mercado</a>
+    <a href="#produtos">Os produtos</a>
+    <a href="#dinastia">A Dinastia</a>
+  </div>
+  <a href="#aplicar" class="btn btn-gold btn-sm">Aplicar agora ›</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════ HERO CINEMATOGRÁFICO ═══════════ -->
+<div class="hero-stage" id="hero-stage">
+  <section class="hero" id="inicio">
+    <div class="hero-media">
+      <img class="hero-poster" id="heroPoster" src="brand/img/hero_jade_poster.webp" alt="" />
+      <video id="heroVideo" muted playsinline preload="metadata"></video>
+      <div class="hero-shade"></div>
+      <div class="hero-fade" id="heroFade"></div>
+    </div>
+
+    <div class="hero-center">
+      <div class="hero-pill"><i aria-hidden="true"></i>Programa de Representantes · Vagas limitadas por segmento</div>
+      <h1>Você fecha uma vez.<br><span class="gold-txt">Recebe o ano inteiro.</span></h1>
+      <p class="hero-sub">Represente a IA que <strong>9 setores</strong> já usam em produção. Comissão de <strong>90% no fechamento</strong>, <strong>15% do setup</strong> e <strong>10% recorrente por 12 meses</strong> — com a equipe da Dinastia vendendo com você.</p>
+      <div class="hero-ctas">
+        <a href="#aplicar" class="btn btn-gold btn-lg">Quero ser representante ›</a>
+        <a href="#ganho" class="btn btn-ghost btn-lg">Ver o plano ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-proof">
+      <div class="hproof"><b>R$47k+</b><span>acumulados em 6 meses*</span></div>
+      <div class="hproof"><b>100%</b><span>remoto</span></div>
+      <div class="hproof"><b>90%</b><span>já no 1.º fechamento</span></div>
+    </div>
+    <div class="hero-scroll-hint">role</div>
+  </section>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mqTrack">
+    <span class="mi">Telecom &amp; Fibra<i></i></span>
+    <span class="mi">Artigos Personalizados<i></i></span>
+    <span class="mi">Self Storage<i></i></span>
+    <span class="mi">Investimentos<i></i></span>
+    <span class="mi">Escola de Idiomas<i></i></span>
+    <span class="mi">Química B2B<i></i></span>
+    <span class="mi">Peças &amp; Equipamentos<i></i></span>
+    <span class="mi">Terceirização<i></i></span>
+    <span class="mi">Construção Civil<i></i></span>
+  </div>
+</div>
+
+<!-- ═══════════ PILAR 01 · GANHO ═══════════ -->
+<section class="sec sec-ganho" id="ganho">
+  <div class="w">
+    <div class="sec-hd reveal">
+      <span class="eyebrow">Pilar 01 · Quanto você ganha</span>
+      <h2>Três comissões.<br><span class="gold-txt">No mesmo contrato.</span></h2>
+      <p class="lead">Enquanto o mercado paga "a combinar" e zera todo mês, aqui o plano é documentado antes do primeiro papo — e cada cliente ativo paga você o ano inteiro.</p>
+    </div>
+
+    <div class="comm-grid">
+      <div class="comm-card reveal d1">
+        <div class="comm-obj"><img src="brand/img/jade_parceria.webp" alt="" loading="lazy" /></div>
+        <div class="comm-tag">No fechamento</div>
+        <div class="comm-pct">90%</div>
+        <div class="comm-what">da 1.ª mensalidade do cliente</div>
+        <p class="comm-note">50% quando a 1.ª parcela compensa, 50% na 3.ª. Você fecha e já começa a ganhar.</p>
+      </div>
+      <div class="comm-card reveal d2">
+        <div class="comm-obj"><img src="brand/img/jade_vendas.webp" alt="" loading="lazy" /></div>
+        <div class="comm-tag">Na implantação</div>
+        <div class="comm-pct">15%</div>
+        <div class="comm-what">do valor de setup</div>
+        <p class="comm-note">Um setup de R$30 mil coloca R$4.500 extras no seu fechamento.</p>
+      </div>
+      <div class="comm-card reveal d3">
+        <div class="comm-obj"><img src="brand/img/jade_comissao.webp" alt="" loading="lazy" /></div>
+        <div class="comm-tag">Todo mês · 2.º ao 12.º</div>
+        <div class="comm-pct">10%</div>
+        <div class="comm-what">de cada mensalidade ativa</div>
+        <p class="comm-note">Renda recorrente sem ação adicional. Sua carteira cresce, sua renda cresce junto.</p>
+      </div>
+    </div>
+
+    <div class="sim reveal">
+      <div class="sim-top">
+        <div>
+          <h3>O acumulado de quem fecha 1 contrato por mês</h3>
+          <p>Simulação conservadora · contrato de R$30k de setup + R$3k/mês</p>
+        </div>
+        <div class="sim-total">
+          <b data-count="47700" data-prefix="R$ " data-suffix="">R$ 0</b>
+          <span>acumulados no 6.º mês</span>
+        </div>
+      </div>
+      <div class="sim-rows" id="simRows">
+        <div class="sim-row" style="--a:14.4%;--b:0%"><span class="sim-mo">Mês 1</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v">R$ 7.200</span></div>
+        <div class="sim-row" style="--a:28.8%;--b:.6%"><span class="sim-mo">Mês 2</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v">R$ 14.700</span></div>
+        <div class="sim-row" style="--a:43.2%;--b:1.8%"><span class="sim-mo">Mês 3</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v">R$ 22.500</span></div>
+        <div class="sim-row" style="--a:57.6%;--b:3.6%"><span class="sim-mo">Mês 4</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v">R$ 30.600</span></div>
+        <div class="sim-row" style="--a:72%;--b:6%"><span class="sim-mo">Mês 5</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v">R$ 39.000</span></div>
+        <div class="sim-row" style="--a:86.4%;--b:9%"><span class="sim-mo">Mês 6</span><div class="sim-track"><div class="sim-a"></div><div class="sim-b"></div></div><span class="sim-v peak">R$ 47.700</span></div>
+      </div>
+      <div class="sim-leg">
+        <span><i style="background:linear-gradient(90deg,#1fc290,#66ecc4)"></i>Fechamento + setup acumulados</span>
+        <span><i style="background:rgba(45,214,160,.24)"></i>Recorrência dos contratos anteriores</span>
+      </div>
+      <p class="sim-note">Os contratos do mês 1 seguem pagando recorrência até o 12.º mês — sem você fazer nada. Fechando 2 contratos por mês: <strong>R$95.000+ no mesmo período.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PILAR 02 · MERCADO (cinemático) ═══════════ -->
+<section class="sec-mercado" id="mercado">
+  <div class="mercado-bg"><img src="img/market-scale-jade.webp" alt="" data-plx="0.12" /></div>
+  <div class="w">
+    <div class="mercado-in">
+      <span class="eyebrow gold reveal">Pilar 02 · Por que vender IA</span>
+      <h2 class="reveal d1">Ou a empresa já usa IA.<br>Ou está prestes a precisar.</h2>
+      <p class="lead-dark reveal d2" style="margin-top:18px">Não existe segmento fora desse mercado. Da indústria ao escritório de advocacia, a pergunta que toda empresa se faz não é <em style="color:rgba(255,255,255,.85);font-style:normal;font-weight:600">se</em> vai adotar IA — é <em style="color:rgba(255,255,255,.85);font-style:normal;font-weight:600">quando e com quem</em>. Quem estiver na porta nesse momento, leva.</p>
+    </div>
+    <div class="mercado-stats">
+      <div class="mstat reveal d1">
+        <b><span data-count="88">0</span>%</b>
+        <div>das organizações no mundo já usam IA em pelo menos uma função de negócio.</div>
+        <small>McKinsey · State of AI 2026</small>
+      </div>
+      <div class="mstat destaque reveal d2">
+        <b><span data-count="83">0</span>%</b>
+        <div>das empresas brasileiras ainda nem começaram. Esse é o tamanho do território em aberto.</div>
+        <small>Cetic.br/CGI.br · TIC Empresas 2025</small>
+      </div>
+      <div class="mstat reveal d3">
+        <b>US$ 2,5 tri</b>
+        <div>é o investimento mundial em IA previsto só para 2026. O dinheiro já está em movimento.</div>
+        <small>Gartner · janeiro 2026</small>
+      </div>
+    </div>
+    <div class="mercado-tags reveal d4" style="position:relative;z-index:1">
+      <span class="mtag">Indústria</span><span class="mtag">Educação</span><span class="mtag">Saúde</span>
+      <span class="mtag">Serviços B2B</span><span class="mtag">Varejo</span><span class="mtag">Logística</span>
+      <span class="mtag">Construção</span><span class="mtag">Telecom</span><span class="mtag" style="border-color:rgba(45,214,160,.45);color:var(--gold-2)">O seu segmento</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OS DOIS PRODUTOS ═══════════ -->
+<section class="sec sec-produtos" id="produtos">
+  <div class="w">
+    <div class="sec-hd center reveal">
+      <span class="eyebrow">O que você representa</span>
+      <h2>Dois produtos.<br>Um funil completo para o cliente.</h2>
+      <p class="lead">Da porta para fora, a Dinastia gera demanda e vende. Da porta para dentro, transforma a operação. Você apresenta — quem prova é o produto.</p>
+    </div>
+
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <div class="prod-bg"><img src="brand/img/hero_cin_poster.webp" alt="" /></div>
+        <div class="prod-glass">
+          <img class="plogo" src="brand/img/logo-aigrowth-dark.png" alt="DinastIA AI Growth" />
+          <div class="prod-dir">Da porta para fora · Crescimento</div>
+          <h3>IA que atrai, qualifica e vende — todos os dias</h3>
+          <p>Agentes 24/7 no WhatsApp, CRM organizado e follow-up que não desiste. O sistema que já faturou R$4,57 milhões em conversas para um único cliente.</p>
+          <a href="https://aigrowth.dinastia.uk" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Conhecer o AI Growth ›</a>
+        </div>
+      </div>
+
+      <div class="prod-card reveal">
+        <div class="prod-bg"><img src="brand/img/hero_ent_poster.webp" alt="" /></div>
+        <div class="prod-glass">
+          <img class="plogo" src="brand/img/logo-aienterprise-dark.png" alt="DinastIA AI Enterprise" />
+          <div class="prod-dir">Da porta para dentro · Eficiência</div>
+          <h3>IA que devolve escala sem contratar</h3>
+          <p>Diagnóstico completo da operação e agentes sob medida que eliminam retrabalho — devolvendo centenas de horas por mês ao time do cliente.</p>
+          <a href="https://aienterprise.dinastia.uk" target="_blank" rel="noopener" class="btn btn-dark btn-sm">Conhecer o AI Enterprise ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PILAR 03 · A DINASTIA ═══════════ -->
+<section class="sec sec-dinastia" id="dinastia">
+  <div class="w">
+    <div class="hd-flex">
+      <div class="sec-hd reveal">
+        <span class="eyebrow">Pilar 03 · Por que com a Dinastia</span>
+        <h2>Você nunca entra<br>numa reunião sozinho.</h2>
+      </div>
+      <div class="hd-obj reveal d2"><img src="brand/img/jade_coroa.webp" alt="" loading="lazy" /></div>
+    </div>
+    <div class="din-grid">
+      <div class="g-card reveal">
+        <img src="img/guilherme.jpeg" alt="Guilherme Reis — Sócio-fundador DinastIA" />
+        <div class="g-overlay"></div>
+        <div class="g-body">
+          <div class="g-name">Guilherme Reis</div>
+          <div class="g-role">Sócio-fundador · DinastIA</div>
+          <div class="g-tags">
+            <span class="g-tag">Mentor do G4 · +10 mil empresários</span>
+            <span class="g-tag">Londres · Portugal · Brasil</span>
+            <span class="g-tag">Empresas internacionais</span>
+            <span class="g-tag">9 setores em produção</span>
+          </div>
+        </div>
+      </div>
+      <div class="apoio-card reveal d2">
+        <span class="eyebrow on-dark">Estrutura de apoio</span>
+        <h3>A gente vende<br>com você.</h3>
+        <p class="lead-dark" style="font-size:15px">Você conecta a empresa. A Dinastia entra na reunião, apresenta e fecha — e você aprende na prática, do lado de quem já fechou.</p>
+        <ul class="apoio-list">
+          <li class="apoio-item"><span class="apoio-chk">✓</span><div><strong>Vendedores da Dinastia nas suas reuniões</strong><span>Você não apresenta sozinho nas primeiras vezes.</span></div></li>
+          <li class="apoio-item"><span class="apoio-chk">✓</span><div><strong>Material completo pronto para usar</strong><span>Proposta, deck e casos reais com dados — tudo entregue.</span></div></li>
+          <li class="apoio-item"><span class="apoio-chk">✓</span><div><strong>Grupo dedicado no WhatsApp</strong><span>Acesso direto ao time. Dúvida respondida na hora.</span></div></li>
+          <li class="apoio-item"><span class="apoio-chk">✓</span><div><strong>Plano de comissão documentado antes de tudo</strong><span>Você conhece cada número antes de assinar qualquer coisa.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROVA ═══════════ -->
+<section class="sec sec-prova">
+  <div class="w">
+    <div class="sec-hd center reveal">
+      <span class="eyebrow gold">Números de produção, não promessas</span>
+      <h2>O produto que você vai<br>representar já provou.</h2>
+    </div>
+    <div class="prova-grid">
+      <div class="prova-card reveal d1"><div class="prova-num">R$4,57M</div><div class="prova-label">faturados a partir de conversas com IA em um único cliente</div><div class="prova-sector">Telecom · Fibra Óptica B2B</div></div>
+      <div class="prova-card reveal d2"><div class="prova-num"><span data-count="2358">0</span></div><div class="prova-label">conversas de vendas qualificadas por IA sem contratar ninguém</div><div class="prova-sector">Artigos Personalizados</div></div>
+      <div class="prova-card reveal d3"><div class="prova-num"><span data-count="89">0</span>%</div><div class="prova-label">das conversas resolvidas sem nenhuma intervenção humana</div><div class="prova-sector">Peças &amp; Equipamentos</div></div>
+      <div class="prova-card reveal d1"><div class="prova-num"><span data-count="1826">0</span></div><div class="prova-label">investidores triados com modelo humano-primeiro e IA de apoio</div><div class="prova-sector">Instituto de Investimentos</div></div>
+      <div class="prova-card reveal d2"><div class="prova-num"><span data-count="43">0</span>%</div><div class="prova-label">de conversão de lead em reunião agendada — Brasil e Europa</div><div class="prova-sector">Escola de Idiomas</div></div>
+      <div class="prova-card reveal d3"><div class="prova-num"><span data-count="9">0</span></div><div class="prova-label">setores completamente diferentes com IA em produção e crescendo</div><div class="prova-sector">Agosto · 2026</div></div>
+    </div>
+    <p class="prova-src reveal">Dados extraídos das plataformas em operação · agosto/2026 · nomes substituídos por setor para preservar confidencialidade</p>
+  </div>
+</section>
+
+<!-- ═══════════ SELEÇÃO ═══════════ -->
+<section class="sec sec-sel" id="selecao">
+  <div class="w">
+    <div class="hd-flex">
+      <div class="sec-hd reveal">
+        <span class="eyebrow">Como funciona a seleção</span>
+        <h2>Vagas limitadas.<br>Processo claro.</h2>
+        <p class="lead">Cada representante atua com exclusividade de segmento e região. Só abrimos vaga onde há espaço real para crescer.</p>
+      </div>
+      <div class="hd-obj reveal d2"><img src="brand/img/jade_territorio.webp" alt="" loading="lazy" /></div>
+    </div>
+    <div class="sel-grid">
+      <div class="sel-card reveal d1"><div class="sel-n">01</div><h3>Aplicação</h3><p>5 minutos no formulário. Sem currículo obrigatório, sem formalidade.</p></div>
+      <div class="sel-card reveal d2"><div class="sel-n">02</div><h3>Análise de perfil</h3><p>Nosso time analisa cada aplicação individualmente. Não é triagem automática.</p></div>
+      <div class="sel-card reveal d3"><div class="sel-n">03</div><h3>Call de alinhamento</h3><p>Aprovados são convidados. Modelo completo na mesa, sem compromisso prévio.</p></div>
+      <div class="sel-card reveal d4"><div class="sel-n">04</div><h3>Segmento definido</h3><p>Você sai sabendo exatamente onde vai atuar e o que acontece a seguir.</p></div>
+    </div>
+    <div class="sel-cta reveal">
+      <a href="#aplicar" class="btn btn-gold btn-lg">Quero minha vaga ›</a>
+      <p>Aprovados recebem convite para a call em até 3 dias úteis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FORM ═══════════ -->
+<section class="sec sec-form" id="aplicar">
+  <div class="w">
+    <div class="sec-hd center reveal">
+      <span class="eyebrow gold">Aplicação</span>
+      <h2>Solicite sua vaga.</h2>
+      <p class="lead-dark">A única condição: ter no mínimo 5 empresas na sua carteira para apresentar. É o que garante que você começa com reuniões — e não do zero.</p>
+    </div>
+    <div class="form-wrap reveal">
+      <div class="form-card">
+        <form id="qualForm" novalidate>
+          <div class="fg">
+            <div class="fsec">Dados de contato</div>
+            <div class="fi"><label class="fl">Nome completo <span class="req">*</span></label><input type="text" name="nome" placeholder="Seu nome" required autocomplete="name" /></div>
+            <div class="fi"><label class="fl">E-mail <span class="req">*</span></label><input type="email" name="email" placeholder="seu@email.com" required autocomplete="email" /></div>
+            <div class="fi"><label class="fl">WhatsApp <span class="req">*</span></label><input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required autocomplete="tel" /></div>
+            <div class="fi"><label class="fl">Cidade e Estado <span class="req">*</span></label><input type="text" name="cidade" placeholder="Ex: Curitiba, PR" required /></div>
+
+            <hr class="fdiv" /><div class="fsec">Perfil profissional</div>
+            <div class="fi">
+              <label class="fl">Experiência em vendas B2B <span class="req">*</span></label>
+              <select name="experiencia" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="menos1">Menos de 1 ano</option><option value="1a3">1 a 3 anos</option>
+                <option value="3a5">3 a 5 anos</option><option value="mais5">Mais de 5 anos</option>
+              </select>
+            </div>
+            <div class="fi">
+              <label class="fl">Já vendeu tecnologia ou automação? <span class="req">*</span></label>
+              <select name="tech" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="sim_freq">Sim, com frequência</option><option value="sim_pont">Sim, pontualmente</option>
+                <option value="nao_int">Não, mas tenho interesse</option><option value="nao">Não</option>
+              </select>
+            </div>
+            <div class="fi">
+              <label class="fl">Modelo de trabalho atual <span class="req">*</span></label>
+              <select name="modelo" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="presencial">Presencial</option><option value="hibrido">Híbrido</option>
+                <option value="remoto">Remoto</option><option value="desempregado">Não estou trabalhando</option>
+              </select>
+            </div>
+            <div class="fi">
+              <label class="fl">Disponibilidade semanal <span class="req">*</span></label>
+              <select name="disponibilidade" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="menos10">Menos de 10h/semana</option><option value="10a20">10 a 20h/semana</option>
+                <option value="20a30">20 a 30h/semana</option><option value="integral">30h+ por semana</option>
+              </select>
+            </div>
+
+            <hr class="fdiv" /><div class="fsec">Sua carteira de clientes</div>
+            <div class="fi full">
+              <label class="fl">Possui carteira ativa de clientes B2B hoje? <span class="req">*</span></label>
+              <select name="carteira_ativa" id="cAtiva" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="sim">Sim</option><option value="nao">Não</option>
+              </select>
+            </div>
+            <div id="cDet" style="display:none">
+              <div class="fg">
+                <div class="fi"><label class="fl">Quantos clientes? <span class="req">*</span></label>
+                  <select name="carteira_qtd" id="cQtd"><option value="" disabled selected>Selecione</option><option value="1a5">1 a 5</option><option value="6a15">6 a 15</option><option value="16a30">16 a 30</option><option value="mais30">Mais de 30</option></select>
+                </div>
+                <div class="fi"><label class="fl">Faturamento médio <span class="req">*</span></label>
+                  <select name="carteira_fat" id="cFat"><option value="" disabled selected>Selecione</option><option value="ate1mi">Até R$1 mi/ano</option><option value="1a5mi">R$1–5 mi/ano</option><option value="5a20mi">R$5–20 mi/ano</option><option value="mais20mi">+R$20 mi/ano</option></select>
+                </div>
+                <div class="fi"><label class="fl">Segmento principal <span class="req">*</span></label><input type="text" name="carteira_seg" id="cSeg" placeholder="Ex: Saúde, Indústria..." /></div>
+                <div class="fi"><label class="fl">Região de atuação <span class="req">*</span></label><input type="text" name="carteira_reg" id="cReg" placeholder="Ex: Interior de SP..." /></div>
+              </div>
+            </div>
+
+            <hr class="fdiv" /><div class="fsec">Por que essa oportunidade</div>
+            <div class="fi full"><label class="fl">O que te chamou atenção? <span class="req">*</span></label><textarea name="motivacao" placeholder="Conta com suas palavras. Sem formalidade." required></textarea></div>
+            <div class="fi"><label class="fl">LinkedIn <span class="opt">(opcional)</span></label><input type="url" name="linkedin" placeholder="linkedin.com/in/seu-perfil" autocomplete="url" /></div>
+            <div class="fi"><label class="fl">Currículo <span class="opt">(opcional · link)</span></label><input type="url" name="curriculo" placeholder="Link do Drive ou Dropbox" /></div>
+
+            <div class="cb-wrap">
+              <label class="cb-label">
+                <input type="checkbox" name="carteira_ok" required />
+                <span class="cb-text"><strong>Confirmo que tenho 5 ou mais empresas na minha carteira ativa</strong> e que, ao ser aprovado, me comprometo a agendar reuniões com essas empresas para a equipe da Dinastia.</span>
+              </label>
+            </div>
+          </div>
+          <div class="fsub">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+            <button type="submit" class="btn btn-gold">Enviar aplicação ›</button>
+            <p class="fnote">Vagas limitadas por segmento e região. Seus dados não são repassados a terceiros.</p>
+            <p class="fnote ferr" id="formErr" style="display:none;color:#f87171">Não conseguimos enviar agora. Tente de novo em instantes.</p>
+          </div>
+        </form>
+        <div class="form-ok" id="formOk">
+          <div class="ok-ico">✓</div>
+          <h3>Aplicação recebida.</h3>
+          <p>Analisamos cada perfil individualmente. Aprovados recebem convite para a call de alinhamento — onde apresentamos o modelo completo e definimos segmento e região.<br><br>Retornamos em até 3 dias úteis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="w">
+    <div class="footer-in">
+      <a href="#" class="footer-brand">
+        <img src="brand/img/mono-light.png" alt="" />
+        <span>DinastIA</span>
+      </a>
+      <div class="footer-links">
+        <a href="https://aigrowth.dinastia.uk" target="_blank" rel="noopener">AI Growth</a>
+        <a href="https://aienterprise.dinastia.uk" target="_blank" rel="noopener">AI Enterprise</a>
+        <a href="mailto:contato@dinastia.uk">contato@dinastia.uk</a>
+      </div>
+      <p class="footer-copy">© 2026 DinastIA. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── scroll reveal ── */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── marquee: duplica trilha p/ loop contínuo ── */
+(() => {
+  const t = document.getElementById('mqTrack');
+  t.innerHTML += t.innerHTML;
+})();
+
+/* ── hero cinematográfico: vídeo scrubbed pelo scroll (desktop) / loop (mobile) ── */
+(() => {
+  const stage  = document.getElementById('hero-stage');
+  const video  = document.getElementById('heroVideo');
+  const center = document.querySelector('.hero-center');
+  const proof  = document.querySelector('.hero-proof');
+  const mobile  = matchMedia('(max-width:900px)').matches;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scrubMode = !mobile && !reduced;
+  let ready = false, duration = 0, target = 0, cur = 0;
+
+  if (scrubMode) {
+    /* blob garante seek instantâneo mesmo sem suporte a Range no servidor */
+    fetch('brand/video/hero_jade_scrub.mp4')
+      .then(r => { if (!r.ok) throw 0; return r.blob(); })
+      .then(b => { video.src = URL.createObjectURL(b); })
+      .catch(() => {});
+  } else if (!reduced) {
+    video.src = 'brand/video/hero_jade_mobile.mp4';
+  }
+
+  video.addEventListener('loadeddata', () => {
+    ready = true; duration = video.duration || 10;
+    video.classList.add('ready');
+    if (!scrubMode) {
+      video.loop = true;
+      video.play().catch(() => {});
+      /* alguns navegadores mobile só liberam autoplay após o 1.º gesto */
+      const retry = () => { if (video.paused) video.play().catch(() => {}); };
+      addEventListener('touchstart', retry, { once: true, passive: true });
+      addEventListener('scroll', retry, { once: true, passive: true });
+    }
+  });
+  video.addEventListener('error', () => video.classList.remove('ready'));
+
+  const clamp = (v, a, b) => v < a ? a : (v > b ? b : v);
+  const fade = document.getElementById('heroFade');
+  function onScroll() {
+    if (!scrubMode) return;
+    const r = stage.getBoundingClientRect();
+    const scrollable = stage.offsetHeight - innerHeight;
+    const p = clamp(-r.top / scrollable, 0, 1);
+    /* vídeo completa em 80% do stage */
+    target = clamp(p / .8, 0, 1) * Math.max(duration - .05, 0);
+    center.style.opacity = 1 - clamp((p - .22) / .3, 0, 1);
+    center.style.transform = 'translateY(' + (p * -90) + 'px)';
+    proof.style.opacity = 1 - clamp((p - .42) / .22, 0, 1);
+    /* fade suave para o dark no fim do stage — sem quebra brusca */
+    fade.style.opacity = clamp((p - .78) / .2, 0, 1);
+  }
+  function raf() {
+    if (scrubMode && ready && !video.seeking) {
+      cur += (target - cur) * .16;
+      if (Math.abs(target - cur) < .01) cur = target;
+      if (Math.abs(video.currentTime - cur) > .02) { try { video.currentTime = cur; } catch (e) {} }
+    }
+    requestAnimationFrame(raf);
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll(); requestAnimationFrame(raf);
+})();
+
+/* ── parallax simples: [data-plx] ── */
+(() => {
+  const els = Array.from(document.querySelectorAll('[data-plx]'));
+  if (!els.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function tick() {
+    const vh = innerHeight;
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const speed = parseFloat(el.dataset.plx) || .1;
+      const off = (r.top + r.height / 2 - vh / 2) * speed;
+      el.style.transform = 'translateY(' + off.toFixed(1) + 'px)';
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* ── count-up nos números [data-count] ── */
+(() => {
+  const fmt = n => n.toLocaleString('pt-BR');
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    const el = e.target, end = parseInt(el.dataset.count, 10);
+    const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    const t0 = performance.now(), dur = 1600;
+    (function step(t) {
+      const p = Math.min((t - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + fmt(Math.round(end * eased)) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }), { threshold: .5 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+})();
+
+/* ── barras do simulador ── */
+(() => {
+  const rio = new IntersectionObserver(es => es.forEach((e) => {
+    if (e.isIntersecting) {
+      const rows = Array.from(document.querySelectorAll('.sim-row'));
+      rows.forEach((r, i) => setTimeout(() => r.classList.add('in'), i * 140));
+      rio.disconnect();
+    }
+  }), { threshold: .4 });
+  const sim = document.getElementById('simRows');
+  if (sim) rio.observe(sim);
+})();
+
+/* ── nav: hide on scroll down + active section ── */
+(() => {
+  let py = 0;
+  const nav = document.getElementById('mainNav');
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    nav.classList.toggle('hidden', y > py && y > 400);
+    py = y;
+  }, { passive: true });
+
+  const navAs = document.querySelectorAll('.nav-links a, .mobile-menu-links a');
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting)
+        navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + s.id));
+    }, { threshold: .3 }).observe(s);
+  });
+})();
+
+/* ── float CTA ── */
+(() => {
+  const fc = document.getElementById('floatCta');
+  const stage = document.getElementById('hero-stage');
+  const form = document.getElementById('aplicar');
+  let heroOut = false, formIn = false;
+  const upd = () => fc.classList.toggle('show', heroOut && !formIn);
+  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; upd(); }, { threshold: .05 }).observe(stage);
+  new IntersectionObserver(([e]) => { formIn = e.isIntersecting; upd(); }, { threshold: .15 }).observe(form);
+  fc.addEventListener('click', () => form.scrollIntoView({ behavior: 'smooth' }));
+})();
+
+/* ── hamburger / menu mobile ── */
+(() => {
+  const hb = document.getElementById('navHamburger');
+  const mm = document.getElementById('mobileMenu');
+  const mc = document.getElementById('mobileClose');
+  const open  = () => { hb.classList.add('open'); mm.classList.add('open'); mm.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+  const close = () => { hb.classList.remove('open'); mm.classList.remove('open'); mm.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+  hb.addEventListener('click', () => mm.classList.contains('open') ? close() : open());
+  mc.addEventListener('click', close);
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
+
+/* ── smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+/* ── carteira toggle ── */
+(() => {
+  const cAtiva = document.getElementById('cAtiva');
+  const cDet = document.getElementById('cDet');
+  const cIds = ['cQtd','cFat','cSeg','cReg'];
+  cAtiva.addEventListener('change', function () {
+    const show = this.value === 'sim';
+    cDet.style.display = show ? 'block' : 'none';
+    cIds.forEach(id => { const el = document.getElementById(id); if (el) { el.required = show; if (!show) el.value = ''; } });
+  });
+})();
+
+/* ── form submit → POST /api/lead (Node → Google Sheets) ── */
+(() => {
+  const qs = new URLSearchParams(location.search);
+  const tracking = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k => { if (qs.get(k)) tracking[k] = qs.get(k); });
+  tracking.referrer = document.referrer || '';
+  tracking.page_url = location.href.split('#')[0];
+
+  const form = document.getElementById('qualForm');
+  const btn = form.querySelector('button[type="submit"]');
+  const err = document.getElementById('formErr');
+  let sending = false;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (sending) return;
+    let ok = true;
+    this.querySelectorAll('[required]').forEach(f => {
+      const empty = f.type === 'checkbox' ? !f.checked : !f.value.trim();
+      if (f.type !== 'checkbox') f.style.borderColor = empty ? 'rgba(239,68,68,.5)' : '';
+      if (empty) ok = false;
+    });
+    if (!ok) return;
+
+    const data = Object.fromEntries(new FormData(this).entries());
+    data.carteira_ok = this.querySelector('[name="carteira_ok"]').checked;
+    Object.assign(data, tracking);
+
+    sending = true;
+    const label = btn.textContent;
+    btn.textContent = 'Enviando…'; btn.disabled = true; err.style.display = 'none';
+    try {
+      const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+      this.style.display = 'none';
+      document.getElementById('formOk').classList.add('show');
+      document.getElementById('aplicar').scrollIntoView({ behavior: 'smooth' });
+    } catch (_) {
+      err.style.display = 'block';
+    } finally {
+      sending = false; btn.textContent = label; btn.disabled = false;
+    }
+  });
+})();
+document.querySelectorAll('input,select,textarea').forEach(f =>
+  f.addEventListener('input', () => { f.style.borderColor = ''; })
+);
+</script>
+</body>
+</html>
