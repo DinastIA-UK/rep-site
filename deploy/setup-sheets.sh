@@ -2,6 +2,7 @@
 # Fecha a integracao com o Google Sheets de ponta a ponta.
 # Pre-requisito: `gcloud auth login` feito com uma conta que tenha acesso ao projeto GCP.
 # Uso: deploy/setup-sheets.sh [gcp-project] [email-dono-da-planilha]
+#      SHEET_ID=<id> deploy/setup-sheets.sh   -> usa planilha ja criada (compartilhar com a SA antes)
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 PROJECT="${1:-grupor3-503009}"
@@ -19,10 +20,14 @@ if [ ! -f "$KEY" ]; then
   echo "▸ Chave"
   gcloud iam service-accounts keys create "$KEY" --iam-account "$SA_EMAIL" --project "$PROJECT" >/dev/null
 fi
-echo "▸ Planilha"
-cd "$HERE/server"
-OUT="$(GOOGLE_SERVICE_ACCOUNT_JSON="$(cat "$KEY")" node tools/create-sheet.js "$OWNER")"
-echo "$OUT"
-SHEET_ID="$(echo "$OUT" | sed -n 's/^SHEET_ID=//p')"
+if [ -n "${SHEET_ID:-}" ]; then
+  echo "▸ Usando planilha existente $SHEET_ID — ela precisa estar compartilhada (Editor) com: $SA_EMAIL"
+else
+  echo "▸ Planilha (criada pela SA e compartilhada com $OWNER)"
+  cd "$HERE/server"
+  OUT="$(GOOGLE_SERVICE_ACCOUNT_JSON="$(cat "$KEY")" node tools/create-sheet.js "$OWNER")"
+  echo "$OUT"
+  SHEET_ID="$(echo "$OUT" | sed -n 's/^SHEET_ID=//p')"
+fi
 echo "▸ Env no EasyPanel + redeploy"
 SHEET_ID="$SHEET_ID" SA_KEY_FILE="$KEY" "$HERE/deploy/set-env.sh"

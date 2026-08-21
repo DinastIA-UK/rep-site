@@ -16,7 +16,7 @@ const drive = google.drive({ version: 'v3', auth });
 
 const tab = process.env.SHEET_TAB || 'Leads';
 const { data } = await sheets.spreadsheets.create({
-  requestBody: { properties: { title: 'Leads — Representantes DinastIA (rep.dinastia.uk)' }, sheets: [{ properties: { title: tab, frozenRowCount: 1 } }] },
+  requestBody: { properties: { title: 'Leads — Representantes DinastIA (rep.dinastia.uk)' }, sheets: [{ properties: { title: tab, gridProperties: { frozenRowCount: 1 } } }] },
 });
 await sheets.spreadsheets.values.update({ spreadsheetId: data.spreadsheetId, range: `${tab}!A1`, valueInputOption: 'RAW', requestBody: { values: [COLUMNS] } });
 await drive.permissions.create({ fileId: data.spreadsheetId, sendNotificationEmail: false, requestBody: { type: 'user', role: 'writer', emailAddress: shareWith } });

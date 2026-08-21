@@ -26,15 +26,19 @@ deploy/
 - Teste independente de DNS: `curl -sk --resolve rep.dinastia.uk:443:178.128.45.31 https://rep.dinastia.uk/healthz`
   → `{"ok":true,"sheets":true|false}`.
 
-## Ligar o Google Sheets (uma vez)
+## Google Sheets (ligado em 21/ago/2026)
 
-```
-gcloud auth login                      # conta com acesso ao projeto GCP
-LPS/REPRESENTANTES/deploy/setup-sheets.sh grupor3-503009 imperador@dinastia.uk
-```
-
-Ou na mão: criar service account + chave JSON no GCP, criar a planilha, compartilhar com o e-mail da
-SA (editor) e rodar `SHEET_ID=<id> SA_KEY_FILE=<chave.json> deploy/set-env.sh`.
+- Planilha: https://docs.google.com/spreadsheets/d/1WA4tDGryU71P2IIWZBpnMK1KL-7danbG8IMn1kOwAo4
+  (dona: imperador@dinastia.uk, aba `Leads`).
+- Service account: `rep-leads@n8n-dinastia-450320.iam.gserviceaccount.com` (projeto GCP
+  `n8n-dinastia-450320`), com permissão *Editor* na planilha. Chave em `deploy/sa-rep-leads.json`
+  (gitignored; a cópia ativa está na env do serviço no EasyPanel).
+- A SA **não consegue criar arquivos no Drive** (restrição do Workspace) — por isso a planilha foi
+  criada na conta do usuário e compartilhada com a SA. Pra trocar de planilha: criar, compartilhar
+  com a SA e rodar `SHEET_ID=<id> SA_KEY_FILE=deploy/sa-rep-leads.json deploy/set-env.sh`.
+- Pra recriar do zero noutro projeto: `gcloud auth login` + `deploy/setup-sheets.sh <projeto> <email>`
+  (se a org bloquear chave de SA: `gcloud resource-manager org-policies disable-enforce
+  iam.disableServiceAccountKeyCreation --project=<projeto>` e esperar ~2 min).
 
 Env do serviço: `PORT`, `SHEET_ID`, `SHEET_TAB` (default `Leads`), `GOOGLE_SERVICE_ACCOUNT_JSON`
 (JSON cru ou base64). Sem `SHEET_ID`/SA o app aceita o lead e guarda só no JSONL (`sheets:false`).
