@@ -103,7 +103,7 @@ export async function appendLeadRow(row) {
     spreadsheetId,
     range: `${tabName()}!A:A`,
     valueInputOption: 'USER_ENTERED',
-    insertDataOption: 'INSERT_ROWS',
+    insertDataOption: 'OVERWRITE',
     requestBody: { values: [row] },
   });
 }
